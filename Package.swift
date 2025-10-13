@@ -5,22 +5,32 @@ import PackageDescription
 
 let package = Package(
     name: "Yscoco",
+	defaultLocalization: "en",
+	platforms: [.iOS(.v17), .macOS(.v15), .watchOS(.v11), .tvOS(.v18), .visionOS(.v2)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "Yscoco",
-            targets: ["Yscoco"]
-        ),
+        .library(name: "Yscoco", targets: ["Yscoco"]),
+		.library(name: "YscocoOC", targets: ["YscocoOC"]),
     ],
+	dependencies: [
+		.package(url: "https://github.com/devxoul/Then", branch: "master"),
+		.package(url: "https://github.com/ReactiveX/RxSwift", branch: "main"),
+		.package(url: "https://github.com/SnapKit/SnapKit", branch: "develop"),
+		.package(url: "https://github.com/airbnb/lottie-ios", branch: "master"),
+		.package(url: "https://github.com/SDWebImage/SDWebImage", branch: "master"),
+		.package(url: "https://github.com/SVProgressHUD/SVProgressHUD", branch: "master"),
+		.package(url: "https://github.com/nicklockwood/SwiftFormat", branch: "main"),
+	],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "Yscoco"
-        ),
-        .testTarget(
-            name: "YscocoTests",
-            dependencies: ["Yscoco"]
-        ),
-    ]
+        .target(name: "Yscoco"),
+		.target(name: "YscocoOC",
+				dependencies: [],
+				path: "Sources/YscocoOC",
+				exclude: [],
+				resources: [],
+				publicHeadersPath: ".",
+				cSettings: []),
+		.testTarget(name: "YscocoTests", dependencies: ["Yscoco", "YscocoOC"]),
+		.testTarget(name: "YscocoOCTests", dependencies: ["Yscoco", "YscocoOC"]),
+    ],
+	swiftLanguageModes: [.v6]
 )
