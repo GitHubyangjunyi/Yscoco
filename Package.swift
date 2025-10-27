@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Yscoco",
 	defaultLocalization: "en",
-	platforms: [.iOS(.v17), .macOS(.v15), .watchOS(.v11), .tvOS(.v18), .visionOS(.v2)],
+	platforms: [.iOS(.v15), .macOS(.v15), .watchOS(.v11), .tvOS(.v18), .visionOS(.v2)],
     products: [
         .library(name: "Yscoco", targets: ["Yscoco"]),
 		.library(name: "YscocoOC", targets: ["YscocoOC"]),
